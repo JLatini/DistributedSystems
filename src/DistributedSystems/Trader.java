@@ -28,6 +28,7 @@ public class Trader {
 
 	  private static boolean sendRequest() throws IOException {
 	    boolean holdTheLine = true;          // Connection exists
+	    //Here code for trader
 	    user.output("Enter message for the Server, or end the session with . : ");
 	    toServer.writeBytes((line = user.input()) + '\n');
 	    if (line.equals(".")) {              // Does the user want to end the session?
