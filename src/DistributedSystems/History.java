@@ -14,11 +14,18 @@ public class History {
 		history.add(new HistoryFragment(Company.ORCL,0,0));
 	}
 	
-	public void UpdateValues(Company c, double highestBid, double lowestAsk){
+	public void UpdateValueLowestAsk(Company c, double lowestAsk){
+		for (HistoryFragment hf : history) {
+			if(hf.getCompany()==c){
+				hf.setLowestAsk(lowestAsk);
+			}
+		}
+	}
+	
+	public void UpdateValueHighestBid(Company c, double highestBid){
 		for (HistoryFragment hf : history) {
 			if(hf.getCompany()==c){
 				hf.setHighestBid(highestBid);
-				hf.setLowestAsk(lowestAsk);
 			}
 		}
 	}

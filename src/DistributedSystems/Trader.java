@@ -3,6 +3,7 @@ package DistributedSystems;
 
 import java.io.*;
 import java.net.*;
+import java.util.Random;
 
 public class Trader {
 
@@ -29,9 +30,23 @@ public class Trader {
 	  private static boolean sendRequest() throws IOException {
 	    boolean holdTheLine = true;          // Connection exists
 	    //Here code for trader
-	    //fefe
+	    String query = "";
+	    
+	    Random rdm = new Random();
+	    //Adding random of Action (Buy / Sell)
+	    
+	    query = Action.Random();
+	    //Random of Company
+	    query += Company.Random();
+	    //Random Price
+	    query += Integer.toString(rdm.nextInt(1999)+1) +";";
+	    //Random Quantity
+	    query += Integer.toString(rdm.nextInt(499)+1) + ";";
+	    
+	    
 	    user.output("Enter message for the Server, or end the session with . : ");
-	    toServer.writeBytes((line = user.input()) + '\n');
+	    toServer.writeBytes((line = query) + '\n');
+	   // toServer.writeBytes((line = user.input()) + '\n');
 	    if (line.equals(".")) {              // Does the user want to end the session?
 	      holdTheLine = false;
 	    }
