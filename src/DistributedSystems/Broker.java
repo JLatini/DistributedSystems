@@ -9,8 +9,7 @@ public class Broker {
 		ServerSocket contactSocket = new ServerSocket(9999);
 		System.out.println("Broker Activated");
 		while(true){
-			Socket client = contactSocket.accept();
-			
+			Socket client = contactSocket.accept();			
 			System.out.println("Client :"+ client.getLocalAddress() + " online");
 			new MatchingService(client).start();
 		}
