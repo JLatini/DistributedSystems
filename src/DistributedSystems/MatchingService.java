@@ -26,7 +26,7 @@ public class MatchingService extends Thread {
 			fromClient = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			toClient = new DataOutputStream(client.getOutputStream());
 			
-			ArrayList<Order> orders = new ArrayList<Order>();
+			
 			
 			while (connected) {
 				line = fromClient.readLine();
@@ -42,7 +42,9 @@ public class MatchingService extends Thread {
 					int company = Integer.parseInt(mvt[1]);			// Company
 					double unitPrice = Double.parseDouble(mvt[2]);	// Price paid
 					int quantity = Integer.parseInt(mvt[3]);		// Quantity
-										
+
+					
+
 					// Add each order 
 					for (int i=0;i<quantity;i++) {
 						Order ord = new Order(Action.values()[action],
@@ -50,8 +52,19 @@ public class MatchingService extends Thread {
 											unitPrice,
 											client.getLocalAddress().toString());
 						// System.out.println(ord.toString());
-						orders.add(ord);
+						if(Action.values()[action] == Action.BUY)
+						{
+							Broker.buyOrders.add(ord);
+						}
+						else
+						{
+							Broker.sellOrders.add(ord);
+						}
+						
 					}
+					ArrayList<Order> cloneBuyOrders =(ArrayList<Order>) Broker.buyOrders.clone();
+					ArrayList<Order> cloneSellOrders = (ArrayList<Order>) Broker.sellOrders.clone();
+					matchOrders(cloneBuyOrders, cloneSellOrders);
 				}
 				
 				fromClient.close(); toClient.close(); client.close();
@@ -60,4 +73,43 @@ public class MatchingService extends Thread {
 		} catch(Exception e){System.out.println(e);
 	}
 }
+
+
+	private void matchOrders(ArrayList<Order> buyOrders, ArrayList<Order> sellOrders) {
+		ArrayList<Order> sellToDelete = new ArrayList<Order>();
+		ArrayList<Order> buyToDelete = new ArrayList<Order>();
+		for(Order o : buyOrders)
+		{
+			for(Order o1 : sellOrders)
+			{
+				if(o.getCompany() == o1.getCompany() && o.getUnitPrice() >= o1.getUnitPrice())
+				{
+					System.out.println("Match!");
+					buyToDelete.add(o);
+					sellToDelete.add(o1);
+					break;
+				}
+			}
+		}
+		
+		for(Order o : buyToDelete)
+		{
+			for(Order _o : buyOrders){
+				if(o==_o)
+				{
+					Broker.buyOrders.remove(o);
+				}
+			}
+		}
+		for(Order o : sellToDelete)
+		{
+			for(Order _o : sellOrders){
+				if(o==_o)
+				{
+					//Sell to verify : Only remove one instance, when it must remove every concerned ones..
+					Broker.sellOrders.remove(o);
+				}
+			}
+		}
+	}
 }
