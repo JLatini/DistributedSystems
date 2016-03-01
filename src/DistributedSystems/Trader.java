@@ -20,7 +20,9 @@ public class Trader {
 	    fromServer = new BufferedReader(     // Datastream TO Server
 	      new InputStreamReader(socket.getInputStream()));
 	    while (sendRequest()) {              // Send requests while connected
-	      receiveResponse();                 // Process server's answer
+	      if (fromServer!=null) {
+	    	  receiveResponse();                 // Process server's answer
+	      }
 	    }
 	    socket.close();
 	    toServer.close();
@@ -55,7 +57,7 @@ public class Trader {
 
 	  private static void receiveResponse() throws IOException {
 	    user.output("Server answers: " +
-	      new String(fromServer.readLine()) + '\n');
+	      new String(fromServer.readLine()) + "\n");
 	  }
 	
 }
