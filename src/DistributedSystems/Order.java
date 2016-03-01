@@ -4,7 +4,6 @@ public class Order {
 	
 	private Company company;
 	private Action action;
-	private int quantity;
 	private double unitPrice;
 	private String emitter;
 
@@ -25,14 +24,6 @@ public class Order {
 		this.action = action;
 	}
 	
-	// Quantity
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
 	// Unit price
 	public double getUnitPrice() {
 		return unitPrice;
@@ -49,16 +40,15 @@ public class Order {
 		this.emitter = emitter;
 	}
 	
-	public Order(Action action, Company company, int quantity, double unitPrice, String emitter) {
+	public Order(Action action, Company company, double unitPrice, String emitter) {
 		setCompany(company);
 		setAction(action);
-		setQuantity(quantity);
 		setUnitPrice(unitPrice);
 		setEmitter(emitter);
 	}
 	
 	@Override
 	public String toString() {
-		return getAction() + " - " + getCompany() + " - " + getQuantity() + " - " + getUnitPrice() + " - " + getEmitter();
+		return getEmitter() + " - " + getAction() + " - " + getCompany() + " - " + getUnitPrice();
 	}
 }

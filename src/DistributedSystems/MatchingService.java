@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class MatchingService extends Thread {
 	Socket client;
@@ -24,6 +25,9 @@ public class MatchingService extends Thread {
 		try{
 			fromClient = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			toClient = new DataOutputStream(client.getOutputStream());
+			
+			ArrayList<Order> orders = new ArrayList<Order>();
+			
 			while (connected) {
 				line = fromClient.readLine();
 				System.out.println("Received : "+line);
@@ -39,11 +43,17 @@ public class MatchingService extends Thread {
 					double unitPrice = Double.parseDouble(mvt[2]);	// Price paid
 					int quantity = Integer.parseInt(mvt[3]);		// Quantity
 										
-					// TEST
-					Order ord = new Order(Action.values()[action], Company.values()[company], quantity, unitPrice, "Emitter_Nicolas");
-					
-					System.out.println(ord.toString());
+					// Add each order 
+					for (int i=0;i<quantity;i++) {
+						Order ord = new Order(Action.values()[action],
+											Company.values()[company],
+											unitPrice,
+											client.getLocalAddress().toString());
+						// System.out.println(ord.toString());
+						orders.add(ord);
+					}
 				}
+				
 				fromClient.close(); toClient.close(); client.close();
 				System.out.println("Thread ended: "+this);
 			}
