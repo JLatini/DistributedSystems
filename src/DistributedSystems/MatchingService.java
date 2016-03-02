@@ -100,7 +100,7 @@ public class MatchingService extends Thread {
 			for(Order _o : buyOrders){
 				if(o==_o)
 				{
-					Broker.buyOrders.remove(o);
+					Broker.buyOrders.remove(_o);
 				}
 			}
 		}
@@ -110,7 +110,7 @@ public class MatchingService extends Thread {
 				if(o==_o)
 				{
 					//Sell to verify : Only remove one instance, when it must remove every concerned ones..
-					Broker.sellOrders.remove(o);
+					Broker.sellOrders.remove(_o);
 				}
 			}
 		}
