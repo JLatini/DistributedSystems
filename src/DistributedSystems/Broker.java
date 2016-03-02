@@ -16,4 +16,10 @@ public class Broker {
 			new MatchingService(client).start();
 		}
 	}
+	
+	public double basePrice(int i)
+	{
+		Company c = Company.values()[i];
+		return c.getPrice();
+	}
 }
