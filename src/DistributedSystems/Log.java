@@ -27,7 +27,7 @@ public class Log {
 		this.fichier = fichier;
 	}
 	
-	public void WriteLog(String path, String data)
+	public static void WriteLog(String path, String data)
 	{
 		try {
 

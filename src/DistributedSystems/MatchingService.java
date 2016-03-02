@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import org.apache.commons.logging.Log;
+
 public class MatchingService extends Thread {
 	Socket client;
 	MatchingService(Socket client){this.client = client;}
@@ -52,6 +54,7 @@ public class MatchingService extends Thread {
 											unitPrice,
 											client.getLocalAddress().toString());
 						// System.out.println(ord.toString());
+						Log.WriteLog("D:\Archivage C\test.log", ord.ToString());
 						if(Action.values()[action] == Action.BUY)
 						{
 							Broker.buyOrders.add(ord);

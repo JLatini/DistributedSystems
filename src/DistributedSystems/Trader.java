@@ -49,7 +49,7 @@ public class Trader {
 	    //user.output("Enter message for the Server, or end the session with . : ");
 	    toServer.writeBytes((line = query) + '\n');
 	   // toServer.writeBytes((line = user.input()) + '\n');
-	    if (line.equals(".")) {              // Does the user want to end the session?
+	    if (line != null) {              // Does the user want to end the session?
 	      holdTheLine = false;
 	    }
 	    return holdTheLine;
