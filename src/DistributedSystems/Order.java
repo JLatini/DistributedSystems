@@ -49,6 +49,6 @@ public class Order {
 	
 	@Override
 	public String toString() {
-		return getEmitter() + " - " + getAction() + " - " + getCompany() + " - " + getUnitPrice();
+		return getEmitter() + ";" + getAction() + ";" + getCompany() + ";" + getUnitPrice();
 	}
 }

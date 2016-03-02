@@ -40,8 +40,8 @@ public class Trader {
 	    query = Action.Random();
 	    //Random of Company
 	    query += Company.Random();
-	    //Random Price
-	    query += Integer.toString(rdm.nextInt(1999)+1) +";";
+	    //Random Price rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+	    query += 1.0 + (1999.0 - 1.0) * rdm.nextDouble() +";";
 	    //Random Quantity
 	    query += Integer.toString(rdm.nextInt(499)+1) + ";";
 	    

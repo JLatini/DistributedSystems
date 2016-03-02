@@ -31,8 +31,6 @@ public class Log {
 	{
 		try {
 
-			String content = "This is the content to write into file";
-
 			File file = new File(path);
 
 			// if file doesnt exists, then create it
@@ -40,12 +38,11 @@ public class Log {
 				file.createNewFile();
 			}
 
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(data);
+			bw.write(data + "\n");
 			bw.close();
 
-			System.out.println("Done");
 
 		} catch (IOException e) {
 			e.printStackTrace();
