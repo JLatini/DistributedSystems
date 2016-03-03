@@ -56,10 +56,12 @@ public class MatchingService extends Thread {
 						if(Action.values()[action] == Action.BUY)
 						{
 							Broker.buyOrders.add(ord);
+							History.getInstance().CheckLowestAsk(ord);
 						}
 						else
 						{
 							Broker.sellOrders.add(ord);
+							History.getInstance().CheckHighestBid(ord);
 						}
 						
 					}

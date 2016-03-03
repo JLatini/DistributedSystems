@@ -20,7 +20,7 @@ public class Trader {
 
 		XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 
-		config.setServerURL(new URL("http://127.0.0.1:8080/xmlrpc"));
+		config.setServerURL(new URL("http://141.100.45.104:8080/xmlrpc"));
 		XmlRpcClient client = new XmlRpcClient();
 		client.setConfig(config);
 
@@ -31,7 +31,7 @@ public class Trader {
 		System.out.println("GetPrice = " + result );
 		
 		
-		socket = new Socket("localhost", 9999);
+		socket = new Socket("141.100.45.104", 9999);
 		toServer = new DataOutputStream(     // Datastream FROM Server
 				socket.getOutputStream());
 		fromServer = new BufferedReader(     // Datastream TO Server

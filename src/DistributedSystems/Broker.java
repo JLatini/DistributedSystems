@@ -12,7 +12,7 @@ public class Broker {
 		System.out.println("Broker Activated");
 		while(true){
 			Socket client = contactSocket.accept();			
-			System.out.println("Client :"+ client.getLocalAddress() + " online");
+			System.out.println("Client :"+ client.getRemoteSocketAddress() + " online");
 			new MatchingService(client).start();
 		}
 	}
