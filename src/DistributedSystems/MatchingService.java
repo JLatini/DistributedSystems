@@ -52,7 +52,7 @@ public class MatchingService extends Thread {
 											unitPrice,
 											client.getLocalAddress().toString());
 						// System.out.println(ord.toString());
-						Log.WriteLog("D:\\Test\\test.log", ord.toString());
+						Log.WriteLog("D:\\Test\\test.csv", ord.toString());
 						if(Action.values()[action] == Action.BUY)
 						{
 							Broker.buyOrders.add(ord);

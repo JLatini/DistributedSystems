@@ -12,7 +12,18 @@ public enum Company { AAPL, IBM, MSFT, ORCL;
 	}
 	
 	public double getPrice(){
-		return 67.0 * Company.valueOf(this.name()).ordinal();
+		return History.getInstance().GetHighestBid(Company.valueOf(this.name()));
 	}
+	
+	public static int fromString(String s)
+	{
+		for (Company c : values())
+		{
+			if( c.name().equals(s))
+				return c.ordinal();
+		}
+		return -1;
+	}
+	
 
 }

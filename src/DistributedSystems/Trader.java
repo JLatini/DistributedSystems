@@ -15,23 +15,12 @@ public class Trader {
 	static BufferedReader fromServer;
 	static DataOutputStream toServer;
 	static UserInterface user = new UserInterface();
-
+	static int companyIndex; 
 	public static void main(String[] args) throws Exception {
 
-		XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 
-		config.setServerURL(new URL("http://141.100.45.104:8080/xmlrpc"));
-		XmlRpcClient client = new XmlRpcClient();
-		client.setConfig(config);
-
-		Object[] params = new Object[]{new Integer(1)};
-		System.out.println("About to get results...(params[0] = " + params[0] +")");
-
-		double result = (double) client.execute("Broker.basePrice", params);
-		System.out.println("GetPrice = " + result );
 		
-		
-		socket = new Socket("141.100.45.104", 9999);
+		socket = new Socket("localhost", 9999);
 		toServer = new DataOutputStream(     // Datastream FROM Server
 				socket.getOutputStream());
 		fromServer = new BufferedReader(     // Datastream TO Server
@@ -41,6 +30,19 @@ public class Trader {
 				receiveResponse();                 // Process server's answer
 			}
 		}
+		
+		XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+		config.setServerURL(new URL("http://127.0.0.1:8080/xmlrpc"));
+		XmlRpcClient client = new XmlRpcClient();
+		client.setConfig(config);
+		
+		Object[] params = new Object[]{new Integer(companyIndex)};
+		System.out.println("About to get results...(params[0] = " + params[0] +")");
+
+		double result = (double) client.execute("Broker.basePrice", params);
+		System.out.println("GetPrice = " + result );
+		
 		socket.close();
 		toServer.close();
 		fromServer.close();
@@ -51,12 +53,18 @@ public class Trader {
 		//Here code for trader
 		String query = "";
 
+		
+		String companyName;
+		
 		Random rdm = new Random();
 		//Adding random of Action (Buy / Sell)
 
 		query = Action.Random();
 		//Random of Company
-		query += Company.Random();
+		companyName = Company.Random();
+		query += companyName;
+		companyIndex = Integer.parseInt(companyName.replace(";", "").trim());
+		
 		//Random Price rangeMin + (rangeMax - rangeMin) * r.nextDouble();
 		query += 1.0 + (1999.0 - 1.0) * rdm.nextDouble() +";";
 		//Random Quantity
@@ -66,6 +74,7 @@ public class Trader {
 		//user.output("Enter message for the Server, or end the session with . : ");
 		toServer.writeBytes((line = query) + '\n');
 		// toServer.writeBytes((line = user.input()) + '\n');
+		
 		if (line != null) {              // Does the user want to end the session?
 			holdTheLine = false;
 		}

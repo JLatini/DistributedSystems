@@ -8,10 +8,10 @@ public class History {
 	private ArrayList<HistoryFragment> history = new ArrayList<HistoryFragment>();
 
 	private History(){
-		history.add(new HistoryFragment(Company.AAPL,0,0));
-		history.add(new HistoryFragment(Company.IBM,0,0));
-		history.add(new HistoryFragment(Company.MSFT,0,0));
-		history.add(new HistoryFragment(Company.ORCL,0,0));
+		history.add(new HistoryFragment(Company.AAPL,0,Integer.MAX_VALUE));
+		history.add(new HistoryFragment(Company.IBM,0,Integer.MAX_VALUE));
+		history.add(new HistoryFragment(Company.MSFT,0,Integer.MAX_VALUE));
+		history.add(new HistoryFragment(Company.ORCL,0,Integer.MAX_VALUE));
 	}
 
 	public void UpdateValueLowestAsk(Company c, double lowestAsk){
@@ -66,6 +66,34 @@ public class History {
 			}
 		}
 
+	}
+	
+	public double GetLowerAsk(Company c)
+	{
+		double price = 0.0;
+		for(HistoryFragment h : history)
+		{
+			if(c.name() == h.getCompany().name())
+			{
+				price = h.getLowestAsk();
+			}
+		}
+		return price;
+		
+	}
+	
+	public double GetHighestBid(Company c)
+	{
+		double price = 0.0;
+		for(HistoryFragment h : history)
+		{
+			if(c.name() == h.getCompany().name())
+			{
+				price = h.getHighestBid();
+			}
+		}
+		return price;
+		
 	}
 
 	static public History getInstance()
