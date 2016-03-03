@@ -10,6 +10,7 @@ public class Broker {
 	public static void main(String[] args) throws Exception {
 		ServerSocket contactSocket = new ServerSocket(9999);
 		System.out.println("Broker Activated");
+		History.getInstance();
 		while(true){
 			Socket client = contactSocket.accept();			
 			System.out.println("Client :"+ client.getRemoteSocketAddress() + " online");

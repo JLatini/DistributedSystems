@@ -5,9 +5,10 @@ import java.util.ArrayList;
 public class History {
 
 	private static History INSTANCE;
-	private ArrayList<HistoryFragment> history = new ArrayList<HistoryFragment>();
+	private static ArrayList<HistoryFragment> history = new ArrayList<HistoryFragment>();
 
 	private History(){
+		history = new ArrayList<HistoryFragment>();
 		history.add(new HistoryFragment(Company.AAPL,0,Integer.MAX_VALUE));
 		history.add(new HistoryFragment(Company.IBM,0,Integer.MAX_VALUE));
 		history.add(new HistoryFragment(Company.MSFT,0,Integer.MAX_VALUE));
