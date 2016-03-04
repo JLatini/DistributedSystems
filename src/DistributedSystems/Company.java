@@ -2,7 +2,11 @@ package DistributedSystems;
 
 import java.util.Random;
 
-
+/**
+ * Used to specify the company inside the query sent to the broker
+ * 
+ *
+ */
 public enum Company { AAPL, IBM, MSFT, ORCL;
 
 	public static String Random()

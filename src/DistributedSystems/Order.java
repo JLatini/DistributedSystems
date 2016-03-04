@@ -1,5 +1,9 @@
 package DistributedSystems;
-
+/**
+ * Class used to store the data of buy and sell orders
+ * 
+ *
+ */
 public class Order {
 	
 	private Company company;

@@ -8,7 +8,11 @@ import org.apache.xmlrpc.server.PropertyHandlerMapping;
 import org.apache.xmlrpc.server.XmlRpcServer;
 import org.apache.xmlrpc.server.XmlRpcServerConfigImpl;
 import org.apache.xmlrpc.webserver.WebServer;
-
+/**
+ * "Intelligent" server who gather the best price of every stock
+ * 
+ *
+ */
 public class AppPrice {
 
 	private static final int port = 8080;

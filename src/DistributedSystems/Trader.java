@@ -7,7 +7,11 @@ import java.util.Random;
 
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
-
+/**
+ * Client, connect to the broker and emit request (Buy or sell orders)
+ * 
+ *
+ */
 public class Trader {
 
 	static String line;

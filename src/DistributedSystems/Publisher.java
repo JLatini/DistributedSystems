@@ -23,7 +23,11 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQTopic;
 
 import javax.jms.*;
-
+/**
+ * Send various informations about stock
+ * 
+ *
+ */
 class Publisher {
 	
     public static void main(String []args) throws JMSException, InterruptedException {

@@ -1,7 +1,11 @@
 package DistributedSystems;
 
 import java.util.*;
-
+/**
+ * Used to specify the operation inside the query sent to the broker
+ * 
+ *
+ */
 public enum Action {
 	BUY, SELL;
 	

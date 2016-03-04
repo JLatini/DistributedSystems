@@ -2,6 +2,11 @@ package DistributedSystems;
 
 import java.util.ArrayList;
 
+/**
+ * Used to store the lowest ask and the highest bid of every stock
+ * 
+ *
+ */
 public class History {
 
 	private static History INSTANCE;

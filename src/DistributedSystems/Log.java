@@ -10,7 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.util.List;
 
-
+/**
+ * Generate a log file (You still need to create the folder or change it to an existing in the code)
+ * 
+ *
+ */
 public class Log {
 	String fichier;
 

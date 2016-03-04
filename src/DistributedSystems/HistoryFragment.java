@@ -1,5 +1,9 @@
 package DistributedSystems;
-
+/**
+ * Small part of the history (1 history fragment per company)
+ * 
+ *
+ */
 public class HistoryFragment {
 
 	private Company company;

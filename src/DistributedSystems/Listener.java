@@ -28,7 +28,11 @@ import org.apache.activemq.command.ActiveMQTopic;
 
 import javax.jms.*;
 
-// Trader with IQ
+/**
+ * Trader with IQ
+ * 
+ *
+ */
 
 class Listener {
 

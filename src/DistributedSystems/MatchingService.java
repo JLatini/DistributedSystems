@@ -5,7 +5,11 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
-
+/**
+ * Contain the code doing the matching between sell and buy orders
+ * 
+ *
+ */
 public class MatchingService extends Thread {
 	Socket client;
 	MatchingService(Socket client){this.client = client;}
